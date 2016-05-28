@@ -1,0 +1,14 @@
+<!--menu_main.xml-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+
+    <item
+        android:id="@+id/action_edit_profile"
+        android:title="edit"
+        android:icon="@drawable/ic_tab_browse_unselected"
+        app:showAsAction="always" />
+
+</menu>

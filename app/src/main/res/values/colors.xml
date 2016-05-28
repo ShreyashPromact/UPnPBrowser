@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_primary_red">#f44336</color>
+    <color name="color_primary_red_dark">#d32f2f</color>
+    <color name="color_primary_green">#4caf50</color>
+    <color name="color_primary_green_dark">#388e3c</color>
+    <color name="color_primary_white">#FFFFFF</color>
+    <color name="color_accent_green_light">#1DE9B6</color>
+    <color name="color_accent_translucent">#771DE9B6</color>
+    <color name="color_shadow">#44000000</color>
+
+    <color name="tab_normal">#C0BFBF</color>
+    <color name="tab_selected">#1DE9B6</color>
+
+    <color name="separator_normal">#22000000</color>
+    <color name="text_dark">#212121</color>
+    <color name="text_grey">#999999</color>
+    <color name="text_green">#1DE9B6</color>
+</resources>

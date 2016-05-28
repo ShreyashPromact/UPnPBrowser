@@ -17,17 +17,18 @@
 
 package org.teleal.cling.android.browser;
 
-import android.app.ListActivity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import org.teleal.cling.android.AndroidUpnpService;
@@ -45,18 +46,14 @@ import java.util.logging.Logger;
 /**
  * @author Christian Bauer
  */
-public class BrowseActivity extends ListActivity {
+public class BrowseActivity extends AppCompatActivity {
 
     // private static final Logger log = Logger.getLogger(BrowseActivity.class.getName());
-
     private ArrayAdapter<DeviceDisplay> listAdapter;
-
+    private ListView listView;
     private BrowseRegistryListener registryListener = new BrowseRegistryListener();
-
     private AndroidUpnpService upnpService;
-
     private ServiceConnection serviceConnection = new ServiceConnection() {
-
         public void onServiceConnected(ComponentName className, IBinder service) {
             upnpService = (AndroidUpnpService) service;
 
@@ -81,9 +78,12 @@ public class BrowseActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_layout);
+        listView = (ListView) findViewById(R.id.listView);
 
         listAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1);
-        setListAdapter(listAdapter);
+        listView.setAdapter(listAdapter);
+        //setListAdapter(listAdapter);
 
         getApplicationContext().bindService(
                 new Intent(this, org.teleal.cling.android.browser.BrowserUpnpService.class),
@@ -100,6 +100,12 @@ public class BrowseActivity extends ListActivity {
         }
         getApplicationContext().unbindService(serviceConnection);
     }
+
+    /*@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -199,6 +205,10 @@ public class BrowseActivity extends ListActivity {
                         listAdapter.remove(d);
                         listAdapter.insert(d, position);
                         Log.d("Device",""+d.getDevice().getDetails().getBaseURL());
+                        Log.d("Device",""+d.getDevice().getDetails().getFriendlyName());
+                        Log.d("Device",""+d.getDevice().getDetails().getSerialNumber());
+                        Log.d("Device",""+d.getDevice().getDetails().getPresentationURI());
+                        Log.d("Device",""+d.getDevice().getDetails().getUpc());
                     } else {
                         listAdapter.add(d);
                         Log.d("Device",""+d.getDevice().getDetails().getBaseURL());
